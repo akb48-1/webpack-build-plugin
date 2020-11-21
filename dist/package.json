@@ -1,0 +1,14 @@
+{
+  "name": "project-build-plugin",
+  "version": "1.0.1",
+  "description": "project-build-plugin",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "project-build-plugin"
+  ],
+  "author": "langzhen",
+  "license": "ISC"
+}
